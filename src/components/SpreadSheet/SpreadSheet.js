@@ -11,7 +11,7 @@ const SpreadSheet = () => {
         setRow(document.getElementById('row').value);
         setCol(document.getElementById('col').value);
 
-        if (row < 0 || col < 0) {
+        if (row <= 0 || col <= 0) {
             alert('Row And Column Must Be Grater Than Zero');
         }
     }
@@ -85,7 +85,7 @@ const SpreadSheet = () => {
 
 
             {
-                row < 0 || col < 0 ?
+                row <= 0 || col <= 0 || row === undefined || col === undefined ?
                     <>
                     </>
                     :
