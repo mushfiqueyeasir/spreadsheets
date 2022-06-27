@@ -10,6 +10,10 @@ const SpreadSheet = () => {
     const drawTable = () => {
         setRow(document.getElementById('row').value);
         setCol(document.getElementById('col').value);
+
+        if (row < 0 || col < 0) {
+            alert('Row And Column Must Be Grater Than Zero');
+        }
     }
 
     const downloadCSVFile = (csv, filename) => {
@@ -52,7 +56,11 @@ const SpreadSheet = () => {
     }
 
     const changeName = (event) => {
-        setFileName(event.target.value)
+        if (event.target.value) {
+            setFileName(event.target.value)
+        } else {
+            setFileName('template')
+        }
 
     }
 
@@ -65,29 +73,28 @@ const SpreadSheet = () => {
         <div className='container  mx-auto p-5'>
 
             <div className='mb-10 grid grid-cols-1 lg:grid-cols-3  gap-5'>
-                <label className='flex items-center'>Row:  <input id='row' type="number" placeholder="Row" class="input input-bordered w-full max-w-xs ml-10 lg:ml-5" /></label>
+                <label className='flex items-center'>Row:  <input id='row' type="number" placeholder="" class="input input-bordered w-full max-w-xs ml-10 lg:ml-5" /></label>
 
-                <label className='flex items-center'>Column: <input id='col' type="number" placeholder="Column" class="input input-bordered w-full max-w-xs ml-5" /> </label>
+                <label className='flex items-center'>Column: <input id='col' type="number" placeholder="" class="input input-bordered w-full max-w-xs ml-5" /> </label>
 
-                <label className='flex items-center'>File Name: <input onBlur={changeName} type="text" placeholder="Column" class="input input-bordered w-full max-w-xs ml-5" /> </label>
+                <label className='flex items-center'>File Name: <input onBlur={changeName} type="text" placeholder="" class="input input-bordered w-full max-w-xs ml-5" /> </label>
 
                 <button onClick={drawTable} class="btn btn-warning max-w-xs">Draw Table</button>
 
             </div>
 
 
-
             {
-                row && col > 0 ?
+                row < 0 || col < 0 ?
+                    <>
+                    </>
+                    :
                     <>
                         <Table row={row} col={col} />
                         <div className='flex'>
                             <button onClick={download} className="btn mt-5">Export</button>
                         </div>
                     </>
-
-                    :
-                    <></>
             }
 
         </div>
