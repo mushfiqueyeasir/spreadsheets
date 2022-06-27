@@ -11,6 +11,7 @@ const Table = ({ row, col }) => {
     return (
         <div class="overflow-x-auto h-[60vh] border-2 border-gray-400">
 
+
             <table class="" id='table' >
                 <thead className='border-2 font-bold'>
                     {tr.slice(0, 1)}
